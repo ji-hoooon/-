@@ -1,0 +1,75 @@
+package org.datastructure.queue;
+
+import org.datastructure.stack.MyStack;
+import org.w3c.dom.Node;
+
+public class MyLinkedQueue<T> implements IQueue<T>{
+    //1. 멤버 변수 선언
+    private Node head;
+    private Node tail;
+    private int size;
+
+    //2. 생성자
+    MyLinkedQueue(){
+        this.size=0;
+        this.head=new Node(null);
+        this.tail=this.head;
+    }
+
+
+    @Override
+    public void offer(T data) {
+        Node node= new Node(data);
+        this.tail.next =node;
+        this.tail=this.tail.next;
+        size++;
+    }
+
+    @Override
+    public T poll() {
+        if(this.isEmpty()) throw new IllegalStateException();
+        Node node= this.head.next;
+        this.head.next=node.next;
+        node.next=null;
+        this.size--;
+        if(this.head.next==null) this.tail=this.head;
+
+        return node.data;
+    }
+
+    @Override
+    public T peek() {
+        if(this.isEmpty()) throw new IllegalStateException();
+        return this.head.next.data;
+    }
+
+    @Override
+    public int size() {
+        return this.size;
+    }
+
+    @Override
+    public void clear() {
+        this.head.next=null;
+        this.tail=head;
+        this.size=0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return head.next.data==null;
+    }
+    private class Node {
+        T data;
+        Node next;
+
+        Node(T data) {
+            this.data = data;
+        }
+
+        Node(T data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+}
