@@ -1,6 +1,7 @@
-package org.algorithms.graph.search.bfs;
+package org.algorithms.graph.search.dfsbfs;
 
 import java.util.*;
+//DFS와 BFS
 public class BackJoon_1260_retry {
     static ArrayList<Integer> answer= new ArrayList<>();
     static boolean[] visited;

@@ -1,4 +1,4 @@
-package org.algorithms.graph.search.dfs;
+package org.algorithms.graph.search.dfs.commongraph;
 
 import javax.crypto.spec.PSource;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-package org.algorithms.graph.search.dfs;
+package org.algorithms.graph.search.dfs.arraygraph;
 
 import java.util.*;
-
+//단지 번호 붙이기
 class Point{
     int x;
     int y;

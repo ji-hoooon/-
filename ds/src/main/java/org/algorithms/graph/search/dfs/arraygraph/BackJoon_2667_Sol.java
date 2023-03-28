@@ -1,9 +1,10 @@
-package org.algorithms.graph.search.dfs;
+package org.algorithms.graph.search.dfs.arraygraph;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+//단지 번호 붙이기
 
 public class BackJoon_2667_Sol {
     //좌표 이동을 위한 배열 {x,y}

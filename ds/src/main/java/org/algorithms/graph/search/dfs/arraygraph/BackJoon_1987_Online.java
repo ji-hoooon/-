@@ -1,4 +1,4 @@
-package org.algorithms.graph.search.dfs;
+package org.algorithms.graph.search.dfs.arraygraph;
 
 import java.util.Scanner;
 
