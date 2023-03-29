@@ -3,6 +3,7 @@ package org.algorithms.graph.search.dfs.arraygraph;
 import java.util.*;
 import java.io.*;
 import org.io.FastReader;
+//섬의 개수
 
 public class BackJoon_4963 {
     static FastReader scan = new FastReader();

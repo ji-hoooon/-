@@ -2,6 +2,7 @@ package org.algorithms.graph.search.dfs.arraygraph;
 import java.util.*;
 import java.io.*;
 import org.io.FastReader;
+//연결 요소의 개수
 
 public class BackJoon_11724 {
 
