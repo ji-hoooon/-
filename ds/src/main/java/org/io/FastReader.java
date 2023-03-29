@@ -1,9 +1,10 @@
 package org.io;
 
-import java.io.BufferedReader;  // BufferedReader를 사용하기 위해 import
-import java.io.IOException;  // IOException을 사용하기 위해 import
-import java.io.InputStreamReader;  // InputStreamReader를 사용하기 위해 import
-import java.util.StringTokenizer;  // StringTokenizer를 사용하기 위해 import
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class FastReader {  // FastReader 클래스 시작
 
