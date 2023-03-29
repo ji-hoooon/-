@@ -1,4 +1,4 @@
-package org.algorithms.graph.search.bfs;
+package org.algorithms.graph.search.bfs.make;
 
 import org.io.FastReader;
 
