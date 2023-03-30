@@ -1,48 +1,74 @@
 package org.algorithms.graph.search.bfs.make;
 
-import org.io.FastReader;
-
+import java.io.*;
 import java.util.*;
 //결혼식
 
 public class BackJoon_5567_Sol {
 
-    static FastReader scan = new FastReader();
-    static int N,M,answer;
-    static ArrayList<Integer>[] adj;
-    static int[] dist;
-
-    static void input(){
-        N= scan.nextInt();
-        M= scan.nextInt();
-        adj=new ArrayList[N+1];
-        dist=new int[N+1];
-        for(int i=1;i<=N;i++){
-            adj[i]=new ArrayList<>();
-        }
-
-        for(int i=0;i<M;i++){
-            int x= scan.nextInt();
-            int y= scan.nextInt();
-            adj[x].add(y);
-            adj[y].add(x);
-        }
-    }
-    static void pro(){
-        bfs(1);
-        System.out.println(answer);
+    static void input() {
+        /* TODO */
     }
 
-    static void bfs(int start){
-        Queue<Integer> Q = new LinkedList<>();
-        for(int x : adj[start]){
-            Q.offer(x);
-        }
-
+    // start 라는 정점의 결혼식에 올 수 있는 사람 수 찾기
+    static int bfs(int start) {
+        /* TODO */
+        return 0;
     }
+
+    static void pro() {
+        System.out.println(bfs(1));
+    }
+
     public static void main(String[] args) {
         input();
         pro();
+    }
 
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        public FastReader(String s) throws FileNotFoundException {
+            br = new BufferedReader(new FileReader(new File(s)));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
     }
 }

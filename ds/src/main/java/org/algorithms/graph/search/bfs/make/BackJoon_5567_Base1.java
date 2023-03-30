@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BackJoon_5567_Base {
+public class BackJoon_5567_Base1 {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
