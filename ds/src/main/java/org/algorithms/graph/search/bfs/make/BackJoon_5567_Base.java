@@ -1,10 +1,12 @@
 package org.algorithms.graph.search.bfs.make;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
-public class BackJoon_1389_Base {
+public class BackJoon_5567_Base {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
@@ -16,7 +18,7 @@ public class BackJoon_1389_Base {
         N = scan.nextInt();
         M = scan.nextInt();
         adj = new ArrayList[N + 1];
-        for (int i = 1;i <= N; i++)
+        for (int i = 1; i <= N; i++)
             adj[i] = new ArrayList<>();
         for (int i = 1; i <= M; i++) {
             int x = scan.nextInt(), y = scan.nextInt();
@@ -25,7 +27,7 @@ public class BackJoon_1389_Base {
         }
     }
 
-    // start 라는 정점의 케빈 베이컨의 수를 계산해주는 함수
+    // start 라는 정점의 결혼식에 올 수 있는 사람 수 찾기
     static int bfs(int start) {
         int ret = 0;
         Queue<Integer> que = new LinkedList<>();
@@ -37,9 +39,10 @@ public class BackJoon_1389_Base {
 
         while (!que.isEmpty()) {  // 더 확인할 점이 없다면 정지
             int x = que.poll();
-            ret += dist[x];
+            if (1 <= dist[x] && dist[x] <= 2) ret++;
+            if (dist[x] == 2) continue;
 
-            for (int y: adj[x]){
+            for (int y : adj[x]) {
                 if (dist[y] != -1) continue;  // x 에서 y 를 갈 수는 있지만, 이미 탐색한 점이면 무시
                 // y를 갈 수 있으니까 que에 추가하고, visit 처리 하기!
                 que.add(y);
@@ -51,15 +54,7 @@ public class BackJoon_1389_Base {
 
     static void pro() {
         dist = new int[N + 1];
-        int minV = bfs(1), minIdx = 1;
-        for (int i = 2; i <= N; i++) {
-            int v = bfs(i);
-            if (minV > v){
-                minV = v;
-                minIdx = i;
-            }
-        }
-        System.out.println(minIdx);
+        System.out.println(bfs(1));
     }
 
     public static void main(String[] args) {
