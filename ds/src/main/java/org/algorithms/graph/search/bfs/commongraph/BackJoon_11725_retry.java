@@ -2,7 +2,7 @@ package org.algorithms.graph.search.bfs.commongraph;
 import java.util.*;
 
 import org.io.FastReader;
-
+//트리의 부모 찾기
 
 public class BackJoon_11725_retry {
 
