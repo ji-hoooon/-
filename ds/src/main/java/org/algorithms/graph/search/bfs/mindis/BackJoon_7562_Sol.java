@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 //나이트의 이동
-public class BackJoon_7562 {
+public class BackJoon_7562_Sol {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
@@ -27,11 +29,29 @@ public class BackJoon_7562 {
     }
 
     static int bfs() {
-        // 초기화 해주기
-        /* TODO */
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dist[i][j] = -1;
+            }
+        }
+        Queue<Integer> Q = new LinkedList<>();
+        dist[sx][sy] = 0;
+        Q.add(sx);
+        Q.add(sy);
 
         // BFS 과정 시작
-        /* TODO */
+        while (!Q.isEmpty()) {
+            int x = Q.poll();
+            int y = Q.poll();
+            for (int k = 0; k < 8; k++) {
+                int nx = x + dir[k][0], ny = y + dir[k][1];
+                if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;  // 지도를 벗어나는 곳으로 가는가?
+                if (dist[nx][ny] != -1) continue;  // 이미 방문한 적이 있는 곳인가?
+                Q.add(nx);
+                Q.add(ny);
+                dist[nx][ny] = dist[x][y] + 1;
+            }
+        }
         return dist[ex][ey];
     }
 

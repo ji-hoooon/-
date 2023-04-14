@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 //나이트의 이동
-public class BackJoon_7562 {
+public class BackJoon_7562_solved {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
@@ -28,10 +30,32 @@ public class BackJoon_7562 {
 
     static int bfs() {
         // 초기화 해주기
-        /* TODO */
+        Queue<Integer> q = new LinkedList<>();
+        boolean[][] visited = new boolean[N][N];
+        q.offer(sx);
+        q.offer(sy);
+        visited[sx][sy] = true;
 
         // BFS 과정 시작
-        /* TODO */
+        while (!q.isEmpty()) {
+            int x = q.poll();
+            int y = q.poll();
+
+            for (int i = 0; i < 8; i++) {
+                int nx = x + dir[i][0];
+                int ny = y + dir[i][1];
+                if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
+                if (visited[nx][ny]) continue;
+
+                visited[nx][ny] = true;
+                dist[nx][ny] += dist[x][y] + 1;
+
+                q.offer(nx);
+                q.offer(ny);
+            }
+        }
+
+
         return dist[ex][ey];
     }
 
@@ -94,3 +118,4 @@ public class BackJoon_7562 {
         }
     }
 }
+
