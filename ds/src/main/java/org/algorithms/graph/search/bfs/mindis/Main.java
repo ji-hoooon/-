@@ -1,15 +1,14 @@
 package org.algorithms.graph.search.bfs.mindis;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 //현명한 나이트
-public class BackJoon_18404 {
+public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
@@ -22,14 +21,35 @@ public class BackJoon_18404 {
         M = scan.nextInt();
         sx = scan.nextInt();
         sy = scan.nextInt();
-        dist = new int[N + 1][N + 1];
+        dist = new int[N][N];
     }
 
     static void bfs() {
         // 초기화 해주기
+        Queue<Integer> q = new LinkedList<>();
+        for(int i=0;i<N;i++){
+            Arrays.fill(dist[i],-1);
+        }
+        q.offer(sx);
+        q.offer(sy);
+        dist[sx][sy]=0;
 
         // BFS 과정 시작
-        /* TODO */
+        while(!q.isEmpty()){
+            int x=q.poll();
+            int y=q.poll();
+
+            for(int k=0;k<8;k++){
+                int nx=x+dir[k][0];
+                int ny=y+dir[k][1];
+                if(nx<0||ny<0||nx>=N||ny>=N)continue;
+                if(dist[nx][ny]!=-1)continue;
+                q.offer(nx);
+                q.offer(ny);
+                dist[nx][ny]=dist[x][y]+1;
+            }
+        }
+
     }
 
     static void pro() {
