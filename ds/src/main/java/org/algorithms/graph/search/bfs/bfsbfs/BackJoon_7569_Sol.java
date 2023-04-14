@@ -1,4 +1,4 @@
-package org.algorithms.graph.search.bfs.mindis;
+package org.algorithms.graph.search.bfs.bfsbfs;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,59 +6,65 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
-public class b7562 {
+public class BackJoon_7569_Sol {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N, M, H;
     static int[][][] dist, a;
     static int[][] dir = {{1, 0, 0,}, {-1, 0, 0}, {0, 1, 0}, {0, -1, 0}, {0, 0, 1}, {0, 0, -1}};
-    static Queue<Integer> q = new LinkedList<>();
 
     static void input() {
         M = scan.nextInt();
         N = scan.nextInt();
         H = scan.nextInt();
-        dist = new int[M][N][H];
-        a = new int[M][N][H];
-            for (int i = 0; i < M; i++) {
-                for (int j = 0; j < N; j++) {
-                    for (int k = 0; k < H; k++) {
-                        Arrays.fill(dist[i][j], -1);
-                    int x = scan.nextInt();
-                    a[i][j][k] = x;
-                    if (x == 1) {
-                        dist[i][j][k] = 0;
-                        q.offer(i);
-                        q.offer(j);
-                        q.offer(k);
-                    }
+        a = new int[H + 1][N + 1][M + 1];
+        dist = new int[H + 1][N + 1][M + 1];
+        for (int h = 1; h <= H; h++) {
+            for (int i = 1; i <= N; i++) {
+                for (int j = 1; j <= M; j++) {
+                    a[h][i][j] = scan.nextInt();
                 }
             }
         }
     }
 
     static void bfs() {
-        while (!q.isEmpty()) {
-            int x = q.poll();
-            int y = q.poll();
-            int z = q.poll();
+        Queue<Integer> Q = new LinkedList<>();
+        for (int h = 1; h <= H; h++) {
+            for (int i = 1; i <= N; i++) {
+                for (int j = 1; j <= M; j++) {
+                    dist[h][i][j] = -1;
+                    if (a[h][i][j] == 1) {
+                        dist[h][i][j] = 0;
+                        Q.add(h);
+                        Q.add(i);
+                        Q.add(j);
+                    }
+                }
+            }
+        }
 
+        // BFS 과정 시작
+        while (!Q.isEmpty()) {
+            int h = Q.poll();
+            int i = Q.poll();
+            int j = Q.poll();
             for (int k = 0; k < 6; k++) {
-                int nx = x + dir[k][0];
-                int ny = y + dir[k][1];
-                int nz = z + dir[k][2];
-                if (nx < 0 || ny < 0 || nz < 0 || nx >= M || ny >= N || nz >= H) continue;
-                if (a[nx][ny][nz] == -1) continue;
-                if (dist[nx][ny][nz] != -1) continue;
-                //if(a[nx][ny][nz]==1) continue;
-                //a[nx][ny][nz]=1;
-                q.offer(nx);
-                q.offer(ny);
-                q.offer(nz);
-                dist[nx][ny][nz] = dist[x][y][z] + 1;
+                int nh = h + dir[k][0];
+                int ni = i + dir[k][1];
+                int nj = j + dir[k][2];
+                if (nh < 1 || ni < 1 || nj < 1 || nh > H || ni > N || nj > M) continue;
+                if (dist[nh][ni][nj] != -1) continue;
+                if (a[nh][ni][nj] == -1) continue;
+                dist[nh][ni][nj] = dist[h][i][j] + 1;
+                Q.add(nh);
+                Q.add(ni);
+                Q.add(nj);
             }
         }
     }
@@ -66,16 +72,15 @@ public class b7562 {
     static void pro() {
         bfs();
         int ans = 0;
-        for (int k = 0; k < H; k++) {
-            for (int i = 0; i < M; i++) {
-                for (int j = 0; j < N; j++) {
-                    if (a[i][j][k] == -1) continue;
-                    if (dist[i][j][k] == -1) {
+        for (int h = 1; h <= H; h++) {
+            for (int i = 1; i <= N; i++) {
+                for (int j = 1; j <= M; j++) {
+                    if (a[h][i][j] == -1) continue;
+                    if (dist[h][i][j] == -1) {
                         System.out.println(-1);
                         return;
                     }
-                    //if(ans<dist[i][j][k]) ans=dist[i][j][k];
-                    ans = Math.max(ans, dist[i][j][k]);
+                    ans = Math.max(ans, dist[h][i][j]);
                 }
             }
         }
