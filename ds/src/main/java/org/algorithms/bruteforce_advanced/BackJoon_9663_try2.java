@@ -21,17 +21,7 @@ public class BackJoon_9663_try2 {
 
     static int N, ans;
     static int[] col;   //col[i] : i번 행의 퀸을 col[i]번 열에 두었다.
-    static boolean attackable(int r1, int c1, int r2, int c2) {
-        //퀸은 가로, 세로, 대각선으로 모든 방향의 일직선상에 존재하지 않아야 한다.
-        if(c1==c2) return true;
-        //같은 열에 있다.
-        if(r1-c1==r2-c2) return true;
-        //대각선의 방향 \ = 행-열 값이 같으면 왼쪽 대각선 관계
-        if(r1+c1==r2+c2) return true;
-        //대각선의 방향 / = 행+열 값이 같으면 오른쪽 대각선 관계
 
-        return false;
-    }
     private static boolean validity_check() {
         //모든 퀸이 서로를 공격하지 않는지 체크
 
@@ -45,6 +35,18 @@ public class BackJoon_9663_try2 {
             }
         }
         return true;
+    }
+
+    static boolean attackable(int r1, int c1, int r2, int c2) {
+        //퀸은 가로, 세로, 대각선으로 모든 방향의 일직선상에 존재하지 않아야 한다.
+        if(c1==c2) return true;
+        //같은 열에 있다.
+        if(r1-c1==r2-c2) return true;
+        //대각선의 방향 \ = 행-열 값이 같으면 왼쪽 대각선 관계
+        if(r1+c1==r2+c2) return true;
+        //대각선의 방향 / = 행+열 값이 같으면 오른쪽 대각선 관계
+
+        return false;
     }
 
     //row번 ~ N번 행에 대해 가능한 퀸을 놓는 모든 경우의 수를 구한다.
