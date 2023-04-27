@@ -1,4 +1,4 @@
-package org.algorithms.sort.sort_advanced;
+package org.algorithms.sort.sort_practice;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,37 +6,44 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-//카드
-public class BackJoon_11652_Base {
+//파일 정리
+public class BackJoon_20291_Sol {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static long[] a;
+    static String[] a;
 
     static void input() {
         N = scan.nextInt();
-        a = new long[N + 1];
+        a = new String[N + 1];
         for (int i = 1; i <= N; i++) {
-            a[i] = scan.nextLong();
+            a[i] = scan.nextLine().split("\\.")[1];
         }
     }
 
     static void pro() {
-        // Sort 정렬하기
+        Arrays.sort(a, 1, N + 1);
 
-        // mode: 최빈값, modeCnt: 최빈값의 등장 횟수, curCnt: 현재 값(a[1])의 등장 횟수
-        long mode = a[1];
-        int modeCnt = 1, curCnt = 1;
+        for (int i = 1; i <= N; ) {
+            // a[i] 와 같은 모든 것을 하나씩 찾는다.
+            int cnt = 1, j = i + 1;
+            for (; j <= N; j++) {
+                if (a[j].compareTo(a[i]) == 0) cnt++;
+                else break;
+            }
 
+            sb.append(a[i]).append(' ').append(cnt).append('\n');
 
-        // TODO
-        // 2번 원소부터 차례대로 보면서, 같은 숫자가 이어서 나오고 있는 지, 새로운 숫자가 나왔는 지를 판단하여
-        // curCnt를 갱신해주고, 최빈값을 갱신하는 작업.
+            // a[j] 가 a[i] 랑 다른 상황! 즉, 다음 i 는 j 부터 시작하면 된다.
+            i = j;
+        }
 
         // 정답 출력하기
+        System.out.println(sb.toString());
     }
 
     public static void main(String[] args) {

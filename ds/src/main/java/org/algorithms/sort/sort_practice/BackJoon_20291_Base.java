@@ -1,4 +1,4 @@
-package org.algorithms.sort.sort_advanced;
+package org.algorithms.sort.sort_practice;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,35 +8,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-//카드
-public class BackJoon_11652_Base {
+//파일 정리
+public class BackJoon_20291_Base {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static long[] a;
+    static String[] a;
 
     static void input() {
         N = scan.nextInt();
-        a = new long[N + 1];
+        a = new String[N + 1];
         for (int i = 1; i <= N; i++) {
-            a[i] = scan.nextLong();
+            // 입력된 파일 이름을 . 을 기준으로 나눠서 확장자를 가져오기
         }
     }
 
     static void pro() {
-        // Sort 정렬하기
-
-        // mode: 최빈값, modeCnt: 최빈값의 등장 횟수, curCnt: 현재 값(a[1])의 등장 횟수
-        long mode = a[1];
-        int modeCnt = 1, curCnt = 1;
-
-
-        // TODO
-        // 2번 원소부터 차례대로 보면서, 같은 숫자가 이어서 나오고 있는 지, 새로운 숫자가 나왔는 지를 판단하여
-        // curCnt를 갱신해주고, 최빈값을 갱신하는 작업.
-
-        // 정답 출력하기
+        // TODO: 확장자마다 몇 번 나타났나 count 하기
     }
 
     public static void main(String[] args) {

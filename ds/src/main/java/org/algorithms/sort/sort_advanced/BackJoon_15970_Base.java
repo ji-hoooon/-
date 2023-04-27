@@ -6,35 +6,52 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-//카드
-public class BackJoon_11652_Base {
+//화살표 그리기
+public class BackJoon_15970_Base {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static long[] a;
+    static ArrayList<Integer>[] a;
 
     static void input() {
         N = scan.nextInt();
-        a = new long[N + 1];
+        a = new ArrayList[N + 1];
+        for (int color = 1; color <= N; color++) {
+            a[color] = new ArrayList<Integer>();
+        }
         for (int i = 1; i <= N; i++) {
-            a[i] = scan.nextLong();
+            int coord, color;
+            coord = scan.nextInt();
+            color = scan.nextInt();
+            // TODO: color 인 색깔의 점이 coord 에 놓여 있음
         }
     }
 
-    static void pro() {
-        // Sort 정렬하기
-
-        // mode: 최빈값, modeCnt: 최빈값의 등장 횟수, curCnt: 현재 값(a[1])의 등장 횟수
-        long mode = a[1];
-        int modeCnt = 1, curCnt = 1;
-
-
+    static int toLeft(int color, int idx) {
         // TODO
-        // 2번 원소부터 차례대로 보면서, 같은 숫자가 이어서 나오고 있는 지, 새로운 숫자가 나왔는 지를 판단하여
-        // curCnt를 갱신해주고, 최빈값을 갱신하는 작업.
+        // 색깔이 color 인 점의 idx 번째에 있는 점이 왼쪽으로 화살표를 그린다면
+        // 화살표의 길이를 return 하는 함수. 왼쪽에 점이 없다면 무한대를 return.
+        return 0;
+    }
+
+    static int toRight(int color, int idx) {
+        // TODO
+        // 색깔이 color 인 점의 idx 번째에 있는 점이 오른쪽으로 화살표를 그린다면
+        // 화살표의 길이를 return 하는 함수. 오른쪽에 점이 없다면 무한대를 return.
+        return 0;
+    }
+
+    static void pro() {
+        // TODO: 색깔별로 정렬하기
+
+        int ans = 0;
+        for (int color = 1; color <= N; color++) {
+            // TODO: 색깔 별로, 각 점마다 가장 가까운 점 찾아주기
+        }
 
         // 정답 출력하기
     }

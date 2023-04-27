@@ -6,10 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
-
 //카드
-public class BackJoon_11652_Base {
+public class BackJoon_11652_solved {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
@@ -26,6 +26,13 @@ public class BackJoon_11652_Base {
 
     static void pro() {
         // Sort 정렬하기
+        //: 왜 1부터, N+1까지만 정렬해야할까 -> Dual pivot Quick sort는 in-place sort로, 순서를 보장하지 않는다.
+//        Arrays.sort(a);
+        Arrays.sort(a,1,N+1);
+
+        for(int i=0;i<=N;i++){
+            System.out.println("a[i] = " + a[i]);
+        }
 
         // mode: 최빈값, modeCnt: 최빈값의 등장 횟수, curCnt: 현재 값(a[1])의 등장 횟수
         long mode = a[1];
@@ -35,8 +42,21 @@ public class BackJoon_11652_Base {
         // TODO
         // 2번 원소부터 차례대로 보면서, 같은 숫자가 이어서 나오고 있는 지, 새로운 숫자가 나왔는 지를 판단하여
         // curCnt를 갱신해주고, 최빈값을 갱신하는 작업.
+        for(int i=2; i<=N;i++){
+            if(a[i-1]==a[i]){
+                curCnt++;
+                if(modeCnt<curCnt){
+                    mode=a[i];
+                    modeCnt=curCnt;
+                }
+            }else{
+                curCnt=1;
+            }
+        }
+
 
         // 정답 출력하기
+        System.out.println(sb.append(mode).toString());
     }
 
     public static void main(String[] args) {

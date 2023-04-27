@@ -6,37 +6,57 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
-//카드
-public class BackJoon_11652_Base {
+//화살표 그리기
+public class BackJoon_15970_Sol {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static long[] a;
+    static ArrayList<Integer>[] a;
 
     static void input() {
         N = scan.nextInt();
-        a = new long[N + 1];
+        a = new ArrayList[N + 1];
+        for (int color = 1; color <= N; color++) {
+            a[color] = new ArrayList<Integer>();
+        }
         for (int i = 1; i <= N; i++) {
-            a[i] = scan.nextLong();
+            int coord, color;
+            coord = scan.nextInt();
+            color = scan.nextInt();
+            a[color].add(coord);
         }
     }
 
+    static int toLeft(int color, int idx) {
+        if (idx == 0)  // 왼쪽에 더 이상 점이 없는 상태
+            return Integer.MAX_VALUE;
+        return a[color].get(idx) - a[color].get(idx - 1);
+    }
+
+    static int toRight(int color, int idx) {
+        if (idx + 1 == a[color].size())  // 오른쪽에 더 이상 점이 없는 상태
+            return Integer.MAX_VALUE;
+        return a[color].get(idx + 1) - a[color].get(idx);
+    }
+
     static void pro() {
-        // Sort 정렬하기
+        for (int color = 1; color <= N; color++)
+            Collections.sort(a[color]);
 
-        // mode: 최빈값, modeCnt: 최빈값의 등장 횟수, curCnt: 현재 값(a[1])의 등장 횟수
-        long mode = a[1];
-        int modeCnt = 1, curCnt = 1;
-
-
-        // TODO
-        // 2번 원소부터 차례대로 보면서, 같은 숫자가 이어서 나오고 있는 지, 새로운 숫자가 나왔는 지를 판단하여
-        // curCnt를 갱신해주고, 최빈값을 갱신하는 작업.
-
-        // 정답 출력하기
+        int ans = 0;
+        for (int color = 1; color <= N; color++) {
+            for (int i = 0; i < a[color].size(); i++) {
+                int left_distance = toLeft(color, i);
+                int right_distance = toRight(color, i);
+                ans += Math.min(left_distance, right_distance);
+            }
+        }
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {

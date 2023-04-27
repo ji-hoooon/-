@@ -1,4 +1,4 @@
-package org.algorithms.sort.sort_advanced;
+package org.algorithms.sort.sort_practice;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,37 +6,42 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
-//카드
-public class BackJoon_11652_Base {
+//단어 정렬
+public class BackJoon_1181_Base {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
+    static class MyComparator implements Comparator<String> {
+        @Override
+        public int compare(String lhs, String rhs) {
+            // TODO
+            // lhs 와 rhs 를 비교해서 lhs 가 앞에 와야 하는 조건
+            // 1. 길이가 짧은 게 우선
+            // 2. 길이가 같으면 사전순으로
+
+            return 0;
+        }
+    }
+
     static int N;
-    static long[] a;
+    static String[] a;
 
     static void input() {
         N = scan.nextInt();
-        a = new long[N + 1];
-        for (int i = 1; i <= N; i++) {
-            a[i] = scan.nextLong();
+        a = new String[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = scan.next();
         }
     }
 
     static void pro() {
-        // Sort 정렬하기
-
-        // mode: 최빈값, modeCnt: 최빈값의 등장 횟수, curCnt: 현재 값(a[1])의 등장 횟수
-        long mode = a[1];
-        int modeCnt = 1, curCnt = 1;
-
-
         // TODO
-        // 2번 원소부터 차례대로 보면서, 같은 숫자가 이어서 나오고 있는 지, 새로운 숫자가 나왔는 지를 판단하여
-        // curCnt를 갱신해주고, 최빈값을 갱신하는 작업.
+        // 정렬 조건에 맞게 단어를 정렬하기
 
-        // 정답 출력하기
+        // 출력하기
     }
 
     public static void main(String[] args) {
