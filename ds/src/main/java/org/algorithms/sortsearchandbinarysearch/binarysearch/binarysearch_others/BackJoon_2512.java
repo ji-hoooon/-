@@ -1,4 +1,4 @@
-package org.algorithms.sortsearchandbinarysearch.binarysearch;
+package org.algorithms.sortsearchandbinarysearch.binarysearch.binarysearch_others;
 
 import java.util.Arrays;
 import java.util.Scanner;
