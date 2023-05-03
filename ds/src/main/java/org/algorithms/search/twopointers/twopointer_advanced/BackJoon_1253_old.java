@@ -3,6 +3,8 @@ package org.algorithms.search.twopointers.twopointer_advanced;
 import java.util.Arrays;
 import java.util.Scanner;
 //좋다
+// : L을 먼저 이동해서 고정시키고, R을 이동시킨다.
+
 public class BackJoon_1253_old {
     public int solution(int[] arr) {
         int answer = 0;

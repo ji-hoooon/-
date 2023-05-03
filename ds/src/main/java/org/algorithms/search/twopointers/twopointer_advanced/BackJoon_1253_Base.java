@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 //좋다
+// : L을 먼저 이동해서 고정시키고, R을 이동시킨다.
 public class BackJoon_1253_Base {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
