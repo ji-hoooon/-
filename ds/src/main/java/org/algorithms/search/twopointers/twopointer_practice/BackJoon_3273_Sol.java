@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-
+//두 수의 합
 public class BackJoon_3273_Sol {
     static StringBuilder sb = new StringBuilder();
     static FastReader scan = new FastReader();

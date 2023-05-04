@@ -1,5 +1,4 @@
-package org.algorithms.search.twopointers.twopointer_practice;
-//두 수의 합
+package org.algorithms.search.sortsearch.sort_practice;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,34 +6,60 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
-//두 수의 합
-public class BackJoon_3273_Base {
-    static StringBuilder sb = new StringBuilder();
-    static FastReader scan = new FastReader();
 
-    static int n, S;
-    static int[] a;
+//단어 정렬
+public class BackJoon_1181_solved {
+    static FastReader scan = new FastReader();
+    static StringBuilder sb = new StringBuilder();
+
+    static class MyComparator implements Comparator<String> {
+        @Override
+        public int compare(String lhs, String rhs) {
+            // TODO
+            // lhs 와 rhs 를 비교해서 lhs 가 앞에 와야 하는 조건
+            // 1. 길이가 짧은 게 우선
+            if(lhs.length()<rhs.length()) return -1;
+            else if(lhs.length()>rhs.length()) return 1;
+            // 2. 길이가 같으면 사전순으로
+            else return lhs.compareTo(rhs);
+        }
+    }
+
+    static int N;
+    static String[] a;
 
     static void input() {
-        // 입력 받기
-        /* TODO */
-
-        // 입력 배열 정렬하기
-        /* TODO */
+        N = scan.nextInt();
+        a = new String[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = scan.next();
+        }
     }
 
     static void pro() {
-        int ans = 0, L = 1, R = n;
-        // L과 R을 양쪽 끝에서 이동시키면서 정답 계산하기
-        /* TODO */
-        System.out.println(ans);
+        // 정렬 조건에 맞게 단어를 정렬하기
+//        Arrays.sort(a, new MyComparator());
+        Arrays.sort(a, (o1, o2)-> o1.length()!=o2.length()?o1.length()-o2.length():o1.compareTo(o2));
+
+        // 출력하기
+        String s="";
+        for (String str: a) {
+            if(!s.equals(str)) {
+                sb.append(str).append('\n');
+                s=str;
+            }
+        }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
         input();
         pro();
     }
+
 
     static class FastReader {
         BufferedReader br;

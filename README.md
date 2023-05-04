@@ -36,7 +36,81 @@
 
 ### 연습문제
 1. 1181번. 단어 정렬
+   ```java
+       static void pro() {
+        Arrays.sort(a, new MyComparator());
+        for (int i = 0; i < N; i++) {
+            if (i == 0 || a[i].compareTo(a[i - 1]) != 0)
+                sb.append(a[i]).append('\n');
+        }
+        System.out.println(sb.toString());
+    }
+   ```
+   ```java
+       static void pro() {
+       // 정렬 조건에 맞게 단어를 정렬하기
+       Arrays.sort(a, (o1, o2)-> o1.length()!=o2.length()?o1.length()-o2.length():o1.compareTo(o2));
+
+        // 출력하기
+        String s="";
+        for (String str: a) {
+            if(!s.equals(str)) {
+                sb.append(str).append('\n');
+                s=str;
+            }
+        }
+        System.out.println(sb);
+    }
+   ```
 2. 20291번. 파일 정리
+   - TreeMap 이용
+   ```java
+    static TreeMap<String, Integer> map=new TreeMap<>((o1,o2)-> o1.compareTo(o2));
+
+    static void input() {
+        N = scan.nextInt();
+        a = new String[N + 1];
+        for (int i = 1; i <= N; i++) {
+            // 입력된 파일 이름을 . 을 기준으로 나눠서 확장자를 가져오기
+            String t=scan.next();
+            String[] tmp=t.split("\\.");
+            map.put(tmp[1], map.getOrDefault(tmp[1], 0)+1);
+        }
+    }
+
+    static void pro() {
+        // TODO: 확장자마다 몇 번 나타났나 count 하기
+        for(String str:map.keySet()){
+            sb.append(str).append(" ").append(map.get(str)).append("\n");
+        }
+        System.out.println(sb);
+    }
+   ```
+   - 배열 이용하는 경우 : j가 N까지 돌고, 같은게 없으면 i가 j부터 시작. 따라서, i는 증가하지 않는다.
+   ```java
+       static void pro() {
+        // TODO: 확장자마다 몇 번 나타났나 count 하기
+        //1. 정렬 -> 문자의 오름차순 정렬(사전순)
+        Arrays.sort(a, 1, N+1);
+        //2. 정렬했을때 같으면 카운트 -> i를 증가시키지 않는다. 왜냐하면 다를 때는 j부터 시작해야하므로
+        for(int i=1;i<=N;){
+            int cnt=1;
+            int j=i+1;
+
+            //3. i를 기준으로 같은 경우가 있는지 j로 탐색해서 카운트
+            for(;j<=N;j++) {
+                //사전순이므로 같은경우엔 모두 붙어있다. -> 다르면 break;
+                if (a[j].compareTo(a[i]) == 0) cnt++;
+                else break;
+            }
+            sb.append(a[i]).append(' ').append(cnt).append('\n');
+
+            // 4. a[j] 가 a[i]랑 다를 때는, 다음 i가 j 부터 시작한다.
+            i = j;
+        }
+        System.out.println(sb);
+    }
+   ```
 
 ## 3. 이분 탐색
 ### 정렬이 되어있지 않은 수열과 탐색 대상 X가 갖는 질문 - O(N)
@@ -93,7 +167,7 @@
    4. 17266번. 어두운 굴다리
 
    
-### Advanced          
+### 연습문제 (Hard)          
 1. 1300번. K번째 수
 2. 1637번. 날카로운 눈
 
@@ -134,7 +208,7 @@ while(R+1<=n&&sum<S){
    sum+=a[++R];
 }
 ```
-### 기본 문제 (1) : 두 용액 
+### 응용 문제 (1) : 두 용액 
 #### 이분 탐색을 투포인터로
 1. L := "남아 있는 것들 중" 제일 작은 원소
 2. R := "남아 있는 것들 중" 제일 큰 원소
@@ -155,7 +229,7 @@ while(R+1<=n&&sum<S){
 2. 매순간, L,R로 계산해서 이동시킨다. -> O(N)
 3. O(NlogN)
 
-### 기본 문제 (2) : List of Number Unique Numbers
+### 응용 문제 (2) : List of Number Unique Numbers
 #### 수열에서 연속한 1개 이상의 수를 뽑았을 때 같은 수가 여러 번 등장하지 않은 경우의 수
 1. 정답의 최대치 : N이 10만이면 모든 연속 구간이 카운트 ->N+(N-1)...= 50억
    - 따라서 long 타입 사용해야한다.
@@ -187,7 +261,7 @@ while(R+1<=n&&sum<S){
      3. R을 이동해서 추가된 원소가 [L, R-1] 안에 있는지 확인 : O(1)
      - O(N) 
 
-### 기본 문제 (3) : 좋다
+### 응용 문제 (3) : 좋다
 1. 접근법
    1. 타겟 수 결정 : O(N)
    2. 다른 수 2개 결정해서 만들어지나 확인 : O(N^2)
@@ -199,18 +273,18 @@ while(R+1<=n&&sum<S){
       - 타겟 숫자와 가까운걸 찾는다.
       - O(N^2)
 
-### 기본 문제 (4) : 고냥이
+### 응용 문제 (4) : 고냥이
 - 최대 N개의 종류의 알파벳을 가진 연속된 문자열만 인식
 - 인식할 수 있는 최대 문자열의 길이? = kind
 - 즉, while(kind>N) 반복해서 L을 이동시키면서 조건을 성립하는 최대 문자열의 길이를 찾는다.
 - kind를 계산하는 방법
   1. for문으로 돌면서 kind를 O(26)으로 계산하는 방법
   2. kind를 O(1)으로 계산하는 방법
-     - 
-
-
-
-
+     - 기준 : kind가 바뀌는 기점은 cnt라는 배열에 변화가 발생할 때 
+     - 접근 : add, erase 메서드 호출시 cnt라는 배열이 변화한다. 
+     - 구현 : add와 erase 메서드 호출했을 때, 
+       1. add의 경우, 파라미터에 해당하는 배열 값이 1이 될 때 -> 0에서 1로 변화했을때 kind++ 
+       2. erase의 경우, 파라미터에 해당하는 배열 값이 0이 될 때 -> 1에서 0으로 변화했을때 kind--;
 
 ## 기본 문제
 1. <span style='color:red'> 1806번. 부분합</span>
@@ -219,13 +293,13 @@ while(R+1<=n&&sum<S){
 ## 연습 문제
 1. 3273번. 두 수의 합
 
-## 기본 문제
+## 응용 문제
 1. 13144번. List of Unique Numbers
 2. 1253번. 좋다
    - 2473번. 세 용액
 3. 16472번. 고냥이
 
-### 연습문제
+### 연습 문제
 1. 2003번. 수들의 합 2
 2. 2559번. 수열
 3. 15565번. 귀여운 라이언

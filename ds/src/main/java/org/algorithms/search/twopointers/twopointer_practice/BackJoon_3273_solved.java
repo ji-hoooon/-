@@ -8,8 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+
 //두 수의 합
-public class BackJoon_3273_Base {
+public class BackJoon_3273_solved {
     static StringBuilder sb = new StringBuilder();
     static FastReader scan = new FastReader();
 
