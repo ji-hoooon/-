@@ -340,23 +340,120 @@ while(R+1<=n&&sum<S){
    - 2606번. 바이러스
    - 11403번. 경로 찾기
    - <span style="color:red"> 11725번. 트리의 부모 찾기 </span>
+   ![img_6.png](img_6.png)
    - <span style="color:red"> 13023번. N명의 친구 </span>
+   - ```java
+         public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        int N= Integer.valueOf(s.split(" ")[0]);    //사람의 수
+        int M= Integer.valueOf(s.split(" ")[1]);    //관계의 수
+
+        //인접 리스트 방식을 사용해 그래프 구현
+        List<List<Integer>> graph = new ArrayList<>();
+        //리스트 초기화
+        for(int i=0;i<N;i++){
+            graph.add(i, new ArrayList<>());
+        }
+        //리스트에 노드 삽입
+        for(int i=0;i<M;i++){
+            s=in.nextLine();
+
+            //양방향 관계인 친구관계를 표현하기 위해
+            //String to Int = " "기준 분리 후 -> valueOf로 변환
+            int a = Integer.valueOf(s.split(" ")[0]);
+            int b = Integer.valueOf(s.split(" ")[1]);
+
+            graph.get(a).add(b);
+            graph.get(b).add(a);
+        }
+
+        //방문 여부 배열
+        boolean[] visited = new boolean[N];
+
+        //어느 친구(정점)부터 시작하냐에 따라 달라질 수 있으므로
+        //: DFS를 이용해 반복문으로 돈다
+        for(int i=0;i<N; i++){
+            //자기자신을 포함시켜야하므로
+            dfs(graph, visited, i ,1);
+
+            if (found) {
+                System.out.println("1");
+                return;
+            }
+        }
+        System.out.println("0");
+     }
+        static void dfs(List<List<Integer>> graph, boolean[] visited, int v, int depth){
+        //종료 조건 먼저
+        if(depth==5){
+        found =true;
+        return;
+        }
+
+        //해당 vertex와 연결된 노드를 방문할 것이므로,해당 노드를 제외할 수 있도록 방문했다고 체크
+        visited[v]=true;
+        //해당 노드와 연결된 노드를 방문
+        for(int vertex : graph.get(v)){
+            //방문하지 않은 노드에만 방문하도록
+            if(!visited[vertex]){
+                dfs(graph, visited, vertex, depth+1);
+            }
+        }
+        //해당 vertex와 연결된 노드를 방문을 다 했으므로, 다른 노드에서 해당 노드를 다시 방문할 수 있도록 방문했다는 걸 체크해제
+        visited[v]=false;
+        //: 탐색의 순서가 달라지더라도 방문했던 노드를 다시 방문하지 못하면 원하는 뎁스를 가진 경로를 찾을 수 없다.
+     }
+     ```
+    
 4. 그래프로 만들기
-   - 2251번. 물통
-   - 1697번. 숨바꼭질
+- 주어진 조건에서 정점과 간성르 정의해서 그래프적인 관점에서 문제를 푸는 방법
+
+### 기본 문제 (1) -물통
+- A=0, B=0, C=Limit에서 시작 : 물통 A가 비어있을 때, 가능한 모든 C의 물양
+    - 정점의 상태를 나타내는 값이 숫자 3개로 표현이 된다.
+    - 상태를 저장하는 구조체를 작성 후, 구조체 안에 상태를 변화시키는 행위를 작성한다.
+    - State: 물통이라는 정점들의 상태와 행위를 담고 있는 구조체
+    - BFS : 구조체인 물통을 큐에 담아서 탐색 시작
+![img_11.png](img_11.png)
+![img_12.png](img_12.png)
+  
+#### 기본 문제 (2) -숨바꼭질
+- 수빈이는 -1, +1, *2칸 이동 가능하고, 동생한테 도착하는 최소 이동 횟수를 구해야한다.
+  - 가장 빠른 시간 -> 주어진 정보로 정점과 간선을 정의해 BFS
+  - 가장 빠른 시간 -> BFS 최소 이동 횟수 -> 그래프 만들기
+  - 정점은 하나의 상태를 나타낸다.
+    - 동생은 변하지 않고 고정된 정점
+    - 수빈은 변화하는 정점
+  - 간선은 수빈이의 이동을 나타낸다.
+    - 각 정점에서 이동 방법 3가지의 간선을 생성한다.
+    - 단방향 간선
+![img_13.png](img_13.png)
+
+#### 기본 문제 
+   1. 2251번. 물통 
+   2. 1697번. 숨바꼭질
+   
+#### 연습 문제
    - <span style="color:red"> 1389번. 케빈 베이컨의 6단계 법칙 </span>
+   ![img_7.png](img_7.png)
    - <span style="color:red"> 5567번. 결혼식 
+   ![img_8.png](img_8.png)
+
+
 5. 멀터 소스 BFS (시작점이 여러개인 BFS)
    - 14502번. 연구소
    
 6. 최소 이동 거리 BFS
    - 2178번. 미로 탐색
    - 7562번. 나이트의 이동
+   ![img_10.png](img_10.png)
    - 2644번. 촌수 계산
    - 18404번. 현명한 나이트
 7. 더블 BFS
    - 3055번. 탈출 (멀티소스 BFS이기도 함)
    - <span style="color:red"> 7569번. 토마토</span>
+   ![img_9.png](img_9.png)
 
 ## 6. 트리
 ### 키워드
