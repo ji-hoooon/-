@@ -2,7 +2,7 @@ package org.algorithms.graph.search.dfsbfs.dfs.arraygraph_1;
 
 import org.io.FastReader;
 //양
-public class BackJoon_3184 {
+public class BackJoon_3184_solved1 {
     static FastReader scan = new FastReader();
     static int N,M;
     static String[] arr;

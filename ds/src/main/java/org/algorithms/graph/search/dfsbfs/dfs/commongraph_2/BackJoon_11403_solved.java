@@ -2,7 +2,7 @@ package org.algorithms.graph.search.dfsbfs.dfs.commongraph_2;
 import org.io.FastReader;
 
 //경로 찾기
-public class BackJoon_11403 {
+public class BackJoon_11403_solved {
 
     static FastReader scan = new FastReader();
     static int N;

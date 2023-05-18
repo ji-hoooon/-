@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BackJonn_7569_solved {
+public class BackJoon_7569_solved2_visited체크 {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 

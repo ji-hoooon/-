@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.io.FastReader;
 //바이러스
-public class BackJoon_2606 {
+public class BackJoon_2606_solved {
 
     static FastReader scan = new FastReader();
     static int N,M;

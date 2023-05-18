@@ -1,11 +1,11 @@
-package org.algorithms.graph.search.dfsbfs.bfs.mindis_6;
+package org.algorithms.graph.search.dfsbfs.bfs.make_4;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
-public class Main {
+//숨바꼭질
+public class BackJoon_1697_solved2 {
     static int N, K;
     static int answer = Integer.MAX_VALUE;
     static boolean[] visited;
