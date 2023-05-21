@@ -9,8 +9,8 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
-public class BackJoon_7569_solved2_visited체크 {
+//토마토 -> HNM, zxy
+public class BackJoon_7569_solved2_arr변경 {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 

@@ -1,7 +1,7 @@
 package org.algorithms.graph.search.dfsbfs.bfs.bfsbfs_7;
 import java.util.*;
-
-public class BackJoon_7569_solved_arr변경 {
+//토마토
+public class BackJoon_7569_solved_visited변경 {
     static int M,N,H,answer;
     static int[][][] arr;
     static boolean[][][] visited;
